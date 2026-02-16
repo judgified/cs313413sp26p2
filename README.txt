@@ -1,63 +1,108 @@
-Project 2: List Performance - README
-====================================
+COMP 313/413 Project 2 Report Template
+======================================
 
-Answers to questions embedded in the code
------------------------------------------
+TestList.java and TestIterator.java
+-----------------------------------
 
-1. TestList.java / TestIterator.java: "Also try with a LinkedList - does it make any difference?"
-   No behavioral difference. Both ArrayList and LinkedList implement the List interface, so
-   the same operations (add, remove, get, contains, etc.) produce the same results. You can
-   switch to LinkedList by using "list = new LinkedList<Integer>();" in setUp() and commenting
-   out the ArrayList line; the tests should still pass.
+	TODO also try with a LinkedList - does it make any difference?
 
-2. TestList.java: "What does list.remove(5) do?"
-   list.remove(5) removes the element at INDEX 5 (the 6th element). It is the overload that
-   takes an int, so it treats 5 as a position, not the value 5. The element at that index
-   is removed and the list size decreases by one.
+		No. There is no behavioral difference. Both ArrayList and LinkedList
+		implement the List interface, so the same operations (add, remove, get,
+		contains, etc.) produce the same results. The tests pass with either
+		type. You can switch by using list = new LinkedList<Integer>(); in
+		setUp() and commenting out the ArrayList line.
 
-3. TestList.java: "What does list.remove(Integer.valueOf(5)) do?"
-   list.remove(Integer.valueOf(5)) removes the first occurrence of the VALUE 5. It uses the
-   overload that takes an Object, so it finds the first element that equals 5 and removes it.
-   If there is no such element, the list is unchanged.
+TestList.java
+-------------
 
-4. TestIterator.java: "What happens if you use list.remove(Integer.valueOf(77))?"
-   If you call list.remove(Integer.valueOf(77)) inside the loop while iterating, the iterator
-   is not notified of the structural change. This causes a ConcurrentModificationException,
-   because the iterator's state no longer matches the list. You must use the iterator's
-   remove() method (i.remove()) when removing during iteration so the iterator stays valid.
+	testRemoveObject()
 
-5. TestPerformance.java: Performance conclusions and running times
-   ---------------------------------------------------------------
-   Run the tests for different values of SIZE (e.g., 10, 100, 1000, 10000) and possibly
-   adjust REPS so each test runs in the tens of seconds. Record the runtimes below.
+		list.remove(5); // what does this method do?
 
-   Example table (replace with your actual runtimes from the test report):
+			It removes the element at index 5 (the 6th element). The method
+			overload that takes an int treats the argument as a position, not
+			a value. So the element at that index is removed and the list
+			size decreases by one.
 
-   SIZE=10, REPS=_______
-     testLinkedListAddRemove:  _______ ms
-     testArrayListAddRemove:   _______ ms
-     testLinkedListAccess:    _______ ms
-     testArrayListAccess:     _______ ms
+		list.remove(Integer.valueOf(5)); // what does this one do?
 
-   SIZE=100, REPS=_______
-     testLinkedListAddRemove:  _______ ms
-     testArrayListAddRemove:   _______ ms
-     testLinkedListAccess:    _______ ms
-     testArrayListAccess:     _______ ms
+			It removes the first occurrence of the value 5. This is the
+			overload that takes an Object, so it finds the first element
+			that equals 5 and removes it. If no such element exists, the
+			list is unchanged.
 
-   SIZE=1000, REPS=_______
-     testLinkedListAddRemove:  _______ ms
-     testArrayListAddRemove:   _______ ms
-     testLinkedListAccess:    _______ ms
-     testArrayListAccess:     _______ ms
+TestIterator.java
+-----------------
 
-   (Add more rows for larger SIZE if you ran them.)
+	testRemove()
 
-   Conclusions:
-   - AddRemove at front (index 0): LinkedList is O(1) per add/remove at front, while
-     ArrayList is O(n) because it must shift all elements. So LinkedList should be much
-     faster for add/remove at front, especially as SIZE increases.
-   - Access by index (get(i)): ArrayList is O(1); LinkedList is O(n) because it must
-     traverse from the head. So ArrayList should be much faster for access, and the gap
-     should grow as SIZE increases.
-   Record your own conclusions based on the runtimes you observed.
+		i.remove(); // what happens if you use list.remove(77)?
+
+			If you use list.remove(Integer.valueOf(77)) (or list.remove(77)
+			if 77 were an index) instead of i.remove() while iterating, the
+			iterator is not notified of the change. That causes a
+			ConcurrentModificationException, because the list was modified
+			outside the iterator. You must use the iterator's remove()
+			method (i.remove()) when removing during iteration so the
+			iterator stays consistent with the list.
+
+TestPerformance.java
+--------------------
+
+	State how many times the tests were executed for each SIZE (10, 100, 1000 and 10000)
+	to get the running time in milliseconds and how the test running times were recorded.
+	These are examples of SIZEs you might choose, you can choose others if you wish.
+
+	[Fill in: e.g., "Each test was run once per SIZE. Running times in milliseconds
+	were taken from the IntelliJ test report (Run -> Tests in ... -> right-click
+	test method -> Run, then view duration in the test results window)." Or: from
+	./gradlew test with timing, etc.]
+
+	SIZE 10
+	REPS used: _______
+	                                  #1   #2   #3   #4   #5   #6 	... (as many tests as you ran)
+        testArrayListAddRemove:       ___  ___  ___  ___  ___  ___  ... (fill these in in ms)
+        testLinkedListAddRemove:      ___  ___  ___  ___  ___  ___
+		testArrayListAccess:          ___  ___  ___  ___  ___  ___
+        testLinkedListAccess:         ___  ___  ___  ___  ___  ___
+
+	SIZE 100
+	REPS used: _______
+	                                  #1   #2   #3   #4   #5   #6 	... (as many tests as you ran)
+        testArrayListAddRemove:       ___  ___  ___  ___  ___  ___  ... (fill these in in ms)
+        testLinkedListAddRemove:      ___  ___  ___  ___  ___  ___
+		testArrayListAccess:          ___  ___  ___  ___  ___  ___
+        testLinkedListAccess:         ___  ___  ___  ___  ___  ___
+
+	SIZE 1000
+	REPS used: _______
+	                                  #1   #2   #3   #4   #5   #6 	... (as many tests as you ran)
+        testArrayListAddRemove:       ___  ___  ___  ___  ___  ___  ... (fill these in in ms)
+        testLinkedListAddRemove:      ___  ___  ___  ___  ___  ___
+		testArrayListAccess:          ___  ___  ___  ___  ___  ___
+        testLinkedListAccess:         ___  ___  ___  ___  ___  ___
+
+	SIZE 10000
+	REPS used: _______
+	                                  #1   #2   #3   #4   #5   #6 	... (as many tests as you ran)
+        testArrayListAddRemove:       ___  ___  ___  ___  ___  ___  ... (fill these in in ms)
+        testLinkedListAddRemove:      ___  ___  ___  ___  ___  ___
+		testArrayListAccess:          ___  ___  ___  ___  ___  ___
+        testLinkedListAccess:         ___  ___  ___  ___  ___  ___
+
+	listAccess - which type of List is better to use, and why?
+
+		ArrayList is better for access by index (get(i)). ArrayList stores
+		elements in an array, so get(i) is O(1). LinkedList must traverse
+		from the head (or tail) to reach index i, so get(i) is O(n). Your
+		recorded times should show ArrayListAccess much faster than
+		LinkedListAccess, especially as SIZE increases.
+
+	listAddRemove - which type of List is better to use, and why?
+
+		LinkedList is better for add/remove at the front (index 0).
+		LinkedList can add or remove at the head in O(1) by changing a few
+		links. ArrayList must shift all elements when inserting or removing
+		at index 0, so each operation is O(n). Your recorded times should
+		show LinkedListAddRemove much faster than ArrayListAddRemove,
+		especially as SIZE increases.
