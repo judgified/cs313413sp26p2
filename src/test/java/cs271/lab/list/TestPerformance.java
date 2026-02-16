@@ -19,8 +19,8 @@ public class TestPerformance {
   private final int SIZE = 10;
 
   // TODO choose this value in such a way that you can observe an actual effect
-  // for increasing problem sizes
-  private final int REPS = 1000000;
+  // for increasing problem sizes (e.g. use smaller REPS for larger SIZE so tests stay in tens of seconds)
+  private final int REPS = 100000;
 
   private List<Integer> arrayList;
 
