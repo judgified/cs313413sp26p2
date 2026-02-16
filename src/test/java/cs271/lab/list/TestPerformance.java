@@ -16,7 +16,7 @@ public class TestPerformance {
   // comparing their running times for AddRemove vs. Access? Record those running times in README.txt!
   // TODO (optional) refactor to DRY
   // which of the two lists performs better as the size increases?
-  private final int SIZE = 10;
+  private final int SIZE = 10000;
 
   // TODO choose this value in such a way that you can observe an actual effect
   // for increasing problem sizes (e.g. use smaller REPS for larger SIZE so tests stay in tens of seconds)
@@ -44,33 +44,45 @@ public class TestPerformance {
 
   @Test
   public void testLinkedListAddRemove() {
+    long start = System.currentTimeMillis();
     for (var r = 0; r < REPS; r++) {
       linkedList.add(0, 77);
       linkedList.remove(0);
     }
+    long ms = System.currentTimeMillis() - start;
+    System.out.println("testLinkedListAddRemove (SIZE=" + SIZE + ", REPS=" + REPS + "): " + ms + " ms");
   }
 
   @Test
   public void testArrayListAddRemove() {
+    long start = System.currentTimeMillis();
     for (var r = 0; r < REPS; r++) {
       arrayList.add(0, 77);
       arrayList.remove(0);
     }
+    long ms = System.currentTimeMillis() - start;
+    System.out.println("testArrayListAddRemove (SIZE=" + SIZE + ", REPS=" + REPS + "): " + ms + " ms");
   }
 
   @Test
   public void testLinkedListAccess() {
+    long start = System.currentTimeMillis();
     var sum = 0L;
     for (var r = 0; r < REPS; r++) {
       sum += linkedList.get(r % SIZE);
     }
+    long ms = System.currentTimeMillis() - start;
+    System.out.println("testLinkedListAccess (SIZE=" + SIZE + ", REPS=" + REPS + "): " + ms + " ms");
   }
 
   @Test
   public void testArrayListAccess() {
+    long start = System.currentTimeMillis();
     var sum = 0L;
     for (var r = 0; r < REPS; r++) {
       sum += arrayList.get(r % SIZE);
     }
+    long ms = System.currentTimeMillis() - start;
+    System.out.println("testArrayListAccess (SIZE=" + SIZE + ", REPS=" + REPS + "): " + ms + " ms");
   }
 }

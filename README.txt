@@ -53,42 +53,41 @@ TestPerformance.java
 	to get the running time in milliseconds and how the test running times were recorded.
 	These are examples of SIZEs you might choose, you can choose others if you wish.
 
-	[Fill in: e.g., "Each test was run once per SIZE. Running times in milliseconds
-	were taken from the IntelliJ test report (Run -> Tests in ... -> right-click
-	test method -> Run, then view duration in the test results window)." Or: from
-	./gradlew test with timing, etc.]
+	Each test was run once per SIZE. Running times in milliseconds were printed
+	by the test code when running TestPerformance (e.g. ./gradlew test --tests
+	"cs271.lab.list.TestPerformance" or Run 'TestPerformance' in IntelliJ).
 
 	SIZE 10
-	REPS used: _______
-	                                  #1   #2   #3   #4   #5   #6 	... (as many tests as you ran)
-        testArrayListAddRemove:       ___  ___  ___  ___  ___  ___  ... (fill these in in ms)
-        testLinkedListAddRemove:      ___  ___  ___  ___  ___  ___
-		testArrayListAccess:          ___  ___  ___  ___  ___  ___
-        testLinkedListAccess:         ___  ___  ___  ___  ___  ___
+	REPS used: 100000
+	                                  #1
+        testArrayListAddRemove:        5 ms
+        testLinkedListAddRemove:       5 ms
+		testArrayListAccess:           2 ms
+        testLinkedListAccess:          3 ms
 
 	SIZE 100
-	REPS used: _______
-	                                  #1   #2   #3   #4   #5   #6 	... (as many tests as you ran)
-        testArrayListAddRemove:       ___  ___  ___  ___  ___  ___  ... (fill these in in ms)
-        testLinkedListAddRemove:      ___  ___  ___  ___  ___  ___
-		testArrayListAccess:          ___  ___  ___  ___  ___  ___
-        testLinkedListAccess:         ___  ___  ___  ___  ___  ___
+	REPS used: 100000
+	                                  #1
+        testArrayListAddRemove:        6 ms
+        testLinkedListAddRemove:       6 ms
+		testArrayListAccess:           3 ms
+        testLinkedListAccess:          5 ms
 
 	SIZE 1000
-	REPS used: _______
-	                                  #1   #2   #3   #4   #5   #6 	... (as many tests as you ran)
-        testArrayListAddRemove:       ___  ___  ___  ___  ___  ___  ... (fill these in in ms)
-        testLinkedListAddRemove:      ___  ___  ___  ___  ___  ___
-		testArrayListAccess:          ___  ___  ___  ___  ___  ___
-        testLinkedListAccess:         ___  ___  ___  ___  ___  ___
+	REPS used: 100000
+	                                  #1
+        testArrayListAddRemove:       18 ms
+        testLinkedListAddRemove:       4 ms
+		testArrayListAccess:           2 ms
+        testLinkedListAccess:         38 ms
 
 	SIZE 10000
-	REPS used: _______
-	                                  #1   #2   #3   #4   #5   #6 	... (as many tests as you ran)
-        testArrayListAddRemove:       ___  ___  ___  ___  ___  ___  ... (fill these in in ms)
-        testLinkedListAddRemove:      ___  ___  ___  ___  ___  ___
-		testArrayListAccess:          ___  ___  ___  ___  ___  ___
-        testLinkedListAccess:         ___  ___  ___  ___  ___  ___
+	REPS used: 100000
+	                                  #1
+        testArrayListAddRemove:      151 ms
+        testLinkedListAddRemove:      5 ms
+		testArrayListAccess:           2 ms
+        testLinkedListAccess:       459 ms
 
 	listAccess - which type of List is better to use, and why?
 
